@@ -1,0 +1,634 @@
+define({ "api": [
+  {
+    "group": "chat",
+    "version": "1.0.0",
+    "type": "get",
+    "url": "/api/v1/chat/get/for/group",
+    "title": "to get paginated chats of Group.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "chatRoom",
+            "description": "<p>Chat Room Id . (query params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "skip",
+            "description": "<p>skip value for pagination. (query params) (optional)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "       {\n    \"error\": false,\n    \"message\": \"All Group Chats Listed\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"chatId\": \"Bd2ouxGQ-\",\n            \"modifiedOn\": \"2018-09-01T11:54:56.634Z\",\n            \"createdOn\": \"2018-09-01T11:54:55.631Z\",\n            \"seen\": false,\n            \"chatRoomTitle\": \"room3\",\n            \"chatRoom\": \"OvUoyBGRm\",\n            \"message\": \"\\nnice to meet tou \",\n            \"senderId\": \"D63HTYXDf\",\n            \"senderName\": \"ashish mangukiya\"\n        },\n        {\n            \"chatId\": \"PbUaHVA7aH\",\n            \"modifiedOn\": \"2018-09-01T11:54:56.933Z\",\n            \"createdOn\": \"2018-09-01T11:54:55.931Z\",\n            \"seen\": false,\n            \"chatRoomTitle\": \"room3\",\n            \"chatRoom\": \"OvUoyBGRm\",\n            \"message\": \"\\n\",\n            \"senderId\": \"D63HTYXDf\",\n            \"senderName\": \"ashish mangukiya\"\n        },\n        {\n            \"chatId\": \"SOIQP7-jn\",\n            \"modifiedOn\": \"2018-09-01T11:55:15.289Z\",\n            \"createdOn\": \"2018-09-01T11:55:14.286Z\",\n            \"seen\": false,\n            \"chatRoomTitle\": \"room3\",\n            \"chatRoom\": \"OvUoyBGRm\",\n            \"message\": \"hello boyzzzz\\n\",\n            \"senderId\": \"D63HTYXDf\",\n            \"senderName\": \"ashish mangukiya\"\n        }\n    ]\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "  {\n  \"error\": true,\n  \"message\": \"No Chat Found\",\n  \"status\": 404,\n  \"data\": null\n  }\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/chat.js",
+    "groupTitle": "chat",
+    "name": "GetApiV1ChatGetForGroup"
+  },
+  {
+    "group": "chatroom",
+    "version": "1.0.0",
+    "type": "get",
+    "url": "/api/v1/chatroom/details/:chatRoomId",
+    "title": "api for Getting Details of Chat Room.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "chatRoomId",
+            "description": "<p>Id of Chat Room. (query params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "       {\n    \"error\": false,\n    \"message\": \"Room Details Found\",\n    \"status\": 200,\n    \"data\": {\n        \"chatRoomId\": \"1LwanWjjC\",\n        \"modifiedOn\": \"2018-09-01T09:32:37.652Z\",\n        \"createdOn\": \"2018-09-01T09:32:37.000Z\",\n        \"activeUsers\": [\n            {\n                \"user\": \"ashish mangukiya\",\n                \"id\": \"D63HTYXDf\"\n            }\n        ],\n        \"active\": \"Yes\",\n        \"userId\": \"D63HTYXDf\",\n        \"userName\": \"ashish mangukiya\",\n        \"chatRoomLink\": \"http://localhost:3000/chatroom/join/1LwanWjjC\",\n        \"chatRoomTitle\": \"room2\"\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/chatroom.js",
+    "groupTitle": "chatroom",
+    "name": "GetApiV1ChatroomDetailsChatroomid"
+  },
+  {
+    "group": "chatroom",
+    "version": "1.0.0",
+    "type": "get",
+    "url": "/api/v1/chatroom/view/all",
+    "title": "api for Getting Details of all Chat Rooms which are avaiable.",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "        {\n    \"error\": false,\n    \"message\": \"All Room Details Found\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"chatRoomId\": \"WagHQsd9E\",\n            \"modifiedOn\": \"2018-09-01T09:32:25.135Z\",\n            \"createdOn\": \"2018-09-01T09:32:25.000Z\",\n            \"activeUsers\": [\n                {\n                    \"user\": \"ashish mangukiya\",\n                    \"id\": \"D63HTYXDf\"\n                },\n                {\n                    \"id\": \"fwmJjH7eG\",\n                    \"user\": \"ashish mangukiya\"\n                }\n            ],\n            \"active\": \"Yes\",\n            \"userId\": \"D63HTYXDf\",\n            \"userName\": \"ashish mangukiya\",\n            \"chatRoomLink\": \"http://localhost:3000/chatroom/join/WagHQsd9E\",\n            \"chatRoomTitle\": \"room1\"\n        },\n        {\n            \"chatRoomId\": \"1LwanWjjC\",\n            \"modifiedOn\": \"2018-09-01T09:32:37.652Z\",\n            \"createdOn\": \"2018-09-01T09:32:37.000Z\",\n            \"activeUsers\": [\n                {\n                    \"user\": \"ashish mangukiya\",\n                    \"id\": \"D63HTYXDf\"\n                }\n            ],\n            \"active\": \"Yes\",\n            \"userId\": \"D63HTYXDf\",\n            \"userName\": \"ashish mangukiya\",\n            \"chatRoomLink\": \"http://localhost:3000/chatroom/join/1LwanWjjC\",\n            \"chatRoomTitle\": \"room2\"\n        }\n    ]\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/chatroom.js",
+    "groupTitle": "chatroom",
+    "name": "GetApiV1ChatroomViewAll"
+  },
+  {
+    "group": "chatroom",
+    "version": "1.0.0",
+    "type": "get",
+    "url": "/api/v1/chatroom/view/all/rooms/available/to/join/:userId",
+    "title": "api for Getting Details of Chat Room which User can Join.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "chatRoomId",
+            "description": "<p>Id of Chat Room. (query params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "        {\n    \"error\": false,\n    \"message\": \"All Room Details Found\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"chatRoomId\": \"1LwanWjjC\",\n            \"modifiedOn\": \"2018-09-01T09:32:37.652Z\",\n            \"createdOn\": \"2018-09-01T09:32:37.000Z\",\n            \"activeUsers\": [\n                {\n                    \"user\": \"ashish mangukiya\",\n                    \"id\": \"D63HTYXDf\"\n                }\n            ],\n            \"active\": \"Yes\",\n            \"userId\": \"D63HTYXDf\",\n            \"userName\": \"ashish mangukiya\",\n            \"chatRoomLink\": \"http://localhost:3000/chatroom/join/1LwanWjjC\",\n            \"chatRoomTitle\": \"room2\"\n        }\n    ]\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/chatroom.js",
+    "groupTitle": "chatroom",
+    "name": "GetApiV1ChatroomViewAllRoomsAvailableToJoinUserid"
+  },
+  {
+    "group": "chatroom",
+    "version": "1.0.0",
+    "type": "get",
+    "url": "/api/v1/chatroom/view/all/rooms/user/joined/:userId",
+    "title": "api for Getting Details of Chat Room which User is already Joined.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>Id of of the User. (query params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "        {\n    \"error\": false,\n    \"message\": \"All Room Details Found\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"chatRoomId\": \"WagHQsd9E\",\n            \"modifiedOn\": \"2018-09-01T09:32:25.135Z\",\n            \"createdOn\": \"2018-09-01T09:32:25.000Z\",\n            \"activeUsers\": [\n                {\n                    \"user\": \"ashish mangukiya\",\n                    \"id\": \"D63HTYXDf\"\n                }\n            ],\n            \"active\": \"Yes\",\n            \"userId\": \"D63HTYXDf\",\n            \"userName\": \"ashish mangukiya\",\n            \"chatRoomLink\": \"http://localhost:3000/chatroom/join/WagHQsd9E\",\n            \"chatRoomTitle\": \"room1\"\n        },\n        {\n            \"chatRoomId\": \"1LwanWjjC\",\n            \"modifiedOn\": \"2018-09-01T09:32:37.652Z\",\n            \"createdOn\": \"2018-09-01T09:32:37.000Z\",\n            \"activeUsers\": [\n                {\n                    \"user\": \"ashish mangukiya\",\n                    \"id\": \"D63HTYXDf\"\n                }\n            ],\n            \"active\": \"Yes\",\n            \"userId\": \"D63HTYXDf\",\n            \"userName\": \"ashish mangukiya\",\n            \"chatRoomLink\": \"http://localhost:3000/chatroom/join/1LwanWjjC\",\n            \"chatRoomTitle\": \"room2\"\n        }\n    ]\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/chatroom.js",
+    "groupTitle": "chatroom",
+    "name": "GetApiV1ChatroomViewAllRoomsUserJoinedUserid"
+  },
+  {
+    "group": "chatroom",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/chatroom/delete",
+    "title": "api for deleting Chat Room.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "chatRoomId",
+            "description": "<p>Id of Chat Room. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>Id of user. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "        {\n    \"error\": false,\n    \"message\": \"Deleted the room successfully\",\n    \"status\": 200,\n    \"data\": {\n        \"_id\": \"5b8a5ca996d4fc1e426f244b\",\n        \"chatRoomId\": \"WagHQsd9E\",\n        \"__v\": 0,\n        \"modifiedOn\": \"2018-09-01T09:32:25.135Z\",\n        \"createdOn\": \"2018-09-01T09:32:25.000Z\",\n        \"activeUsers\": [\n            {\n                \"id\": \"D63HTYXDf\",\n                \"user\": \"ashish mangukiya\"\n            },\n            {\n                \"user\": \"ashish mangukiya\",\n                \"id\": \"fwmJjH7eG\"\n            }\n        ],\n        \"active\": \"Yes\",\n        \"userId\": \"D63HTYXDf\",\n        \"userName\": \"ashish mangukiya\",\n        \"chatRoomLink\": \"http://localhost:3000/chatroom/join/WagHQsd9E\",\n        \"chatRoomTitle\": \"room1\"\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/chatroom.js",
+    "groupTitle": "chatroom",
+    "name": "PostApiV1ChatroomDelete"
+  },
+  {
+    "group": "chatroom",
+    "version": "1.0.0",
+    "type": "put",
+    "url": "/api/v1/chatroom/update",
+    "title": "api for Updating Chat Room.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "chatRoomId",
+            "description": "<p>Id of Chat Room. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "chatRoomTitle",
+            "description": "<p>Title of Chat Room. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Chat Room details Updated\",\n    \"status\": 200,\n    \"data\": {\n        \"n\": 1,\n        \"nModified\": 1,\n        \"ok\": 1\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/chatroom.js",
+    "groupTitle": "chatroom",
+    "name": "PutApiV1ChatroomUpdate"
+  },
+  {
+    "group": "users",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/changePassword",
+    "title": "api for Changing Password.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>userId of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "oldPassword",
+            "description": "<p>old Password of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "newPassword",
+            "description": "<p>new Password of the user. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Password Update Successfully\",\n    \"status\": 200,\n    \"data\": {\n        \"error\": false,\n        \"message\": \"Password Updated successfully\",\n        \"status\": 200,\n        \"data\": {\n            \"n\": 1,\n            \"nModified\": 1,\n            \"ok\": 1\n        }\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/user.js",
+    "groupTitle": "users",
+    "name": "PostApiV1UsersChangepassword"
+  },
+  {
+    "group": "users",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/login",
+    "title": "api for Login.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "password",
+            "description": "<p>password of the user. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "        {\n    \"error\": false,\n    \"message\": \"Login Successful\",\n    \"status\": 200,\n    \"data\": {\n        \"authToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RpZCI6Ilg0dzg1SDB5VyIsImlhdCI6MTUzNTc5MDI4NjUyMCwiZXhwIjoxNTM1ODc2Njg2LCJzdWIiOiJhdXRoVG9rZW4iLCJpc3MiOiJlZENoYXQiLCJkYXRhIjp7InJlY292ZXJ5UGFzc3dvcmQiOiIiLCJtb2JpbGVOdW1iZXIiOjg0NDY2ODA2NDgsImVtYWlsIjoiYXNoaXNobWFuZ3VraXlhOTdAZ21haWwuY29tIiwibGFzdE5hbWUiOiJtYW5ndWtpeWEiLCJmaXJzdE5hbWUiOiJhc2hpc2giLCJ1c2VySWQiOiJENjNIVFlYRGYifX0.iCG0xJ0P2vsCdZWEZhixxJJCzSlqFLVoWfBe74PiNQM\",\n        \"userDetails\": {\n            \"recoveryPassword\": \"\",\n            \"mobileNumber\": 8446680648,\n            \"email\": \"ashishmangukiya97@gmail.com\",\n            \"lastName\": \"mangukiya\",\n            \"firstName\": \"ashish\",\n            \"userId\": \"D63HTYXDf\"\n        }\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/user.js",
+    "groupTitle": "users",
+    "name": "PostApiV1UsersLogin"
+  },
+  {
+    "group": "users",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/logout",
+    "title": "api to logout from application.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>userId of the user. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Logged Out Successfully\",\n    \"status\": 200,\n    \"data\": null\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/user.js",
+    "groupTitle": "users",
+    "name": "PostApiV1UsersLogout"
+  },
+  {
+    "group": "users",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/resetPassword",
+    "title": "api for Password Reset.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the user. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Password reset Successfully\",\n    \"status\": 200,\n    \"data\": {\n        \"error\": false,\n        \"message\": \"Password reset successfully\",\n        \"status\": 200,\n        \"data\": {\n            \"n\": 1,\n            \"nModified\": 1,\n            \"ok\": 1\n        }\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/user.js",
+    "groupTitle": "users",
+    "name": "PostApiV1UsersResetpassword"
+  },
+  {
+    "group": "users",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/signup",
+    "title": "api for Registering User.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>First Name of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "lastname",
+            "description": "<p>Last Name of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "password",
+            "description": "<p>password of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "mobileNumber",
+            "description": "<p>Mobile Number of the user. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "       {\n    \"error\": false,\n    \"message\": \"User created\",\n    \"status\": 200,\n    \"data\": {\n        \"__v\": 0,\n        \"_id\": \"5b8a4c8c96d4fc1e426f2445\",\n        \"createdOn\": \"2018-09-01T08:23:40.000Z\",\n        \"recoveryPassword\": \"\",\n        \"mobileNumber\": 8446680648,\n        \"email\": \"ashishmangukiya97@gmail.com\",\n        \"lastName\": \"mangukiya\",\n        \"firstName\": \"ashish\",\n        \"userId\": \"D63HTYXDf\"\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/user.js",
+    "groupTitle": "users",
+    "name": "PostApiV1UsersSignup"
+  },
+  {
+    "group": "users",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/updatePassword",
+    "title": "api for Updating Password after Reset.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "recoveryPassword",
+            "description": "<p>recoveryPassword of the user recieved on Email. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "password",
+            "description": "<p>new password of the user . (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Password Update Successfully\",\n    \"status\": 200,\n    \"data\": {\n        \"error\": false,\n        \"message\": \"Password Updated successfully\",\n        \"status\": 200,\n        \"data\": {\n            \"n\": 1,\n            \"nModified\": 1,\n            \"ok\": 1\n        }\n    }\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "app/routes/user.js",
+    "groupTitle": "users",
+    "name": "PostApiV1UsersUpdatepassword"
+  }
+] });
